@@ -1,0 +1,16 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: dental-clinic-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: dental
+      POSTGRES_PASSWORD: dental
+      POSTGRES_DB: dental_clinic
+    ports:
+      - "5432:5432"
+    volumes:
+      - dental_pgdata:/var/lib/postgresql/data
+
+volumes:
+  dental_pgdata:
