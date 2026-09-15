@@ -1,4 +1,6 @@
-export { auth as default } from "@/lib/auth/auth";
+import { auth } from "@/lib/auth/auth";
+
+export default auth;
 
 export const config = {
   matcher: ["/admin/:path*"],

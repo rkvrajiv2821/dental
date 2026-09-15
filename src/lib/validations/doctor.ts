@@ -5,7 +5,7 @@ export const doctorSpecializationSchema = z.object({
   slug: z.string().min(1),
 });
 
-export type DoctorSpecializationInput = z.infer<typeof doctorSpecializationSchema>;
+export type DoctorSpecializationInput = z.input<typeof doctorSpecializationSchema>;
 
 export const socialLinksSchema = z.object({
   facebook: z.string().optional().default(""),
@@ -20,7 +20,7 @@ export const doctorSchema = z.object({
   designation: z.string().optional().nullable(),
   specializationId: z.string().optional().nullable(),
   qualification: z.string().optional().nullable(),
-  experienceYears: z.coerce.number().int().optional().nullable(),
+  experienceYears: z.number().int().optional().nullable(),
   profilePhoto: z.string().optional().nullable(),
   bio: z.string().optional().nullable(),
   languages: z.array(z.string()).default([]),
@@ -32,7 +32,7 @@ export const doctorSchema = z.object({
   seoTitle: z.string().optional().nullable(),
   seoDescription: z.string().optional().nullable(),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
 });
 
-export type DoctorInput = z.infer<typeof doctorSchema>;
+export type DoctorInput = z.input<typeof doctorSchema>;

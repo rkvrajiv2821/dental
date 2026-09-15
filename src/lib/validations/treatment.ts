@@ -7,7 +7,7 @@ export const benefitItemSchema = z.object({
 });
 
 export const procedureStepSchema = z.object({
-  step: z.coerce.number().int(),
+  step: z.number().int(),
   title: z.string().min(1),
   description: z.string().optional().default(""),
 });
@@ -16,10 +16,10 @@ export const treatmentCategorySchema = z.object({
   name: z.string().min(1, "Name is required"),
   slug: z.string().min(1, "Slug is required"),
   description: z.string().optional().nullable(),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
 });
 
-export type TreatmentCategoryInput = z.infer<typeof treatmentCategorySchema>;
+export type TreatmentCategoryInput = z.input<typeof treatmentCategorySchema>;
 
 export const treatmentSchema = z.object({
   name: z.string().min(1, "Name is required"),
@@ -38,7 +38,7 @@ export const treatmentSchema = z.object({
   seoDescription: z.string().optional().nullable(),
   ogImage: z.string().optional().nullable(),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("DRAFT"),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
 });
 
-export type TreatmentInput = z.infer<typeof treatmentSchema>;
+export type TreatmentInput = z.input<typeof treatmentSchema>;

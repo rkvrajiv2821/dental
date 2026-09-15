@@ -21,8 +21,8 @@ export const pageSectionSchema = z.object({
   title: z.string().optional().nullable(),
   subtitle: z.string().optional().nullable(),
   content: z.record(z.string(), z.any()).default({}),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   isVisible: z.boolean().default(true),
 });
 
-export type PageSectionInput = z.infer<typeof pageSectionSchema>;
+export type PageSectionInput = z.input<typeof pageSectionSchema>;

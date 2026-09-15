@@ -36,7 +36,7 @@ export const siteSettingsSchema = z.object({
   googleAnalyticsId: z.string().optional().nullable(),
 });
 
-export type SiteSettingsInput = z.infer<typeof siteSettingsSchema>;
+export type SiteSettingsInput = z.input<typeof siteSettingsSchema>;
 
 export const seoSettingsSchema = z.object({
   defaultTitle: z.string().min(1),
@@ -50,16 +50,16 @@ export const seoSettingsSchema = z.object({
   schemaBusinessType: z.enum(["Dentist", "MedicalBusiness", "LocalBusiness"]).default("Dentist"),
 });
 
-export type SEOSettingsInput = z.infer<typeof seoSettingsSchema>;
+export type SEOSettingsInput = z.input<typeof seoSettingsSchema>;
 
 export const navigationSchema = z.object({
   label: z.string().min(1, "Label is required"),
   url: z.string().min(1, "URL is required"),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   location: z.enum(["HEADER", "FOOTER"]).default("HEADER"),
   openInNewTab: z.boolean().default(false),
   isActive: z.boolean().default(true),
   parentId: z.string().optional().nullable(),
 });
 
-export type NavigationInput = z.infer<typeof navigationSchema>;
+export type NavigationInput = z.input<typeof navigationSchema>;

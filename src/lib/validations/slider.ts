@@ -12,10 +12,10 @@ export const sliderSchema = z.object({
   ctaText2: z.string().optional().nullable(),
   ctaUrl2: z.string().optional().nullable(),
   textPosition: z.enum(["left", "center", "right"]).default("left"),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   isActive: z.boolean().default(true),
-  startDate: z.coerce.date().optional().nullable(),
-  endDate: z.coerce.date().optional().nullable(),
+  startDate: z.date().optional().nullable(),
+  endDate: z.date().optional().nullable(),
 });
 
-export type SliderInput = z.infer<typeof sliderSchema>;
+export type SliderInput = z.input<typeof sliderSchema>;

@@ -9,14 +9,14 @@ export const appointmentSchema = z.object({
   email: z.string().email("Enter a valid email").optional().or(z.literal("")),
   treatmentId: z.string().optional().nullable(),
   doctorId: z.string().optional().nullable(),
-  preferredDate: z.coerce.date().optional().nullable(),
+  preferredDate: z.date().optional().nullable(),
   preferredTime: z.string().optional().nullable(),
   message: z.string().max(1000).optional().nullable(),
   // honeypot spam-protection field — must stay empty
   website: z.string().max(0).optional().or(z.literal("")),
 });
 
-export type AppointmentInput = z.infer<typeof appointmentSchema>;
+export type AppointmentInput = z.input<typeof appointmentSchema>;
 
 export const appointmentStatusSchema = z.object({
   status: z.enum(["NEW", "CONTACTED", "CONFIRMED", "COMPLETED", "CANCELLED"]),
@@ -32,4 +32,4 @@ export const contactEnquirySchema = z.object({
   website: z.string().max(0).optional().or(z.literal("")),
 });
 
-export type ContactEnquiryInput = z.infer<typeof contactEnquirySchema>;
+export type ContactEnquiryInput = z.input<typeof contactEnquirySchema>;

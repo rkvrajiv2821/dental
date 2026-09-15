@@ -8,11 +8,11 @@ export const technologySchema = z.object({
   icon: z.string().optional().nullable(),
   videoUrl: z.string().optional().nullable(),
   treatmentIds: z.array(z.string()).default([]),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("PUBLISHED"),
 });
 
-export type TechnologyInput = z.infer<typeof technologySchema>;
+export type TechnologyInput = z.input<typeof technologySchema>;
 
 export const videoSchema = z.object({
   title: z.string().min(1, "Title is required"),
@@ -20,19 +20,19 @@ export const videoSchema = z.object({
   url: z.string().min(1, "URL is required"),
   thumbnail: z.string().optional().nullable(),
   description: z.string().optional().nullable(),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("PUBLISHED"),
 });
 
-export type VideoInput = z.infer<typeof videoSchema>;
+export type VideoInput = z.input<typeof videoSchema>;
 
 export const faqSchema = z.object({
   question: z.string().min(1, "Question is required"),
   answer: z.string().min(1, "Answer is required"),
   category: z.string().default("general"),
   treatmentId: z.string().optional().nullable(),
-  order: z.coerce.number().int().default(0),
+  order: z.number().int().default(0),
   status: z.enum(["DRAFT", "PUBLISHED", "ARCHIVED"]).default("PUBLISHED"),
 });
 
-export type FAQInput = z.infer<typeof faqSchema>;
+export type FAQInput = z.input<typeof faqSchema>;

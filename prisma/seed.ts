@@ -1,4 +1,5 @@
-import { PrismaClient } from "@prisma/client";
+import "dotenv/config";
+import { PrismaClient, type Prisma } from "@prisma/client";
 import { PrismaPg } from "@prisma/adapter-pg";
 import bcrypt from "bcryptjs";
 
@@ -481,7 +482,13 @@ async function main() {
     },
   });
 
-  const sections: { type: any; title?: string; subtitle?: string; content: any; order: number }[] = [
+  const sections: {
+    type: Parameters<typeof prisma.pageSection.create>[0]["data"]["type"];
+    title?: string;
+    subtitle?: string;
+    content: Record<string, unknown>;
+    order: number;
+  }[] = [
     {
       type: "STATISTICS",
       order: 1,
@@ -528,7 +535,7 @@ async function main() {
   for (const s of sections) {
     const existing = await prisma.pageSection.findFirst({ where: { pageId: homePage.id, type: s.type } });
     if (!existing) {
-      await prisma.pageSection.create({ data: { ...s, pageId: homePage.id } });
+      await prisma.pageSection.create({ data: { ...s, content: s.content as Prisma.InputJsonValue, pageId: homePage.id } });
     }
   }
 
