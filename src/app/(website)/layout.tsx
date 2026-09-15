@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Header } from "@/components/website/header";
 import { Footer } from "@/components/website/footer";
 import { WhatsAppButton } from "@/components/website/whatsapp-button";
+import { GoogleAnalytics } from "@/components/website/google-analytics";
 import { getSiteSettings, getSeoSettings } from "@/lib/data/settings";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -42,6 +43,7 @@ export default async function WebsiteLayout({ children }: { children: React.Reac
         position={settings.whatsappPosition}
         enabled={settings.whatsappEnabled}
       />
+      <GoogleAnalytics id={settings.googleAnalyticsId} />
     </>
   );
 }
