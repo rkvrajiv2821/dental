@@ -1,0 +1,9 @@
+# Local env files must never be uploaded — Vercel's own dashboard-managed env vars are the
+# source of truth for deployments. (`vercel deploy` otherwise happily bundles these and their
+# values silently override the real ones, e.g. NEXTAUTH_URL=localhost broke every prod redirect.)
+.env
+.env.local
+.env.development
+.env.development.local
+.env.production.local
+.env*.local
