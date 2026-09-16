@@ -1,6 +1,10 @@
 import type { NextAuthConfig } from "next-auth";
 
 export const authConfig = {
+  // Without this, Auth.js can fall back to an incorrect inferred host (e.g. localhost) when
+  // building redirect URLs behind Vercel's proxy. Safe here since the app only runs on hosts we
+  // control (local dev + this Vercel project).
+  trustHost: true,
   pages: {
     signIn: "/admin/login",
   },
